@@ -1,6 +1,7 @@
 <template>
   <nav>
     <router-link to="/">Home</router-link> |
+    <router-link to="/ZooMap">動物園</router-link> |
     <router-link to="/LatestNews">最新消息</router-link>
   </nav>
   <router-view />

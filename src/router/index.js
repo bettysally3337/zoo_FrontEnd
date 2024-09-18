@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import LatestNews from '@/views/LatestNews.vue'
 import HomeView from '@/pages/HomeView.vue'
+import ZooMap from '@/pages/ZooMap.vue'
 const routes = [
   
   {
@@ -9,6 +10,7 @@ const routes = [
     component: LatestNews
   },
   { path: '/ToTheZone', component: HomeView },
+  { path: '/ZooMap', component: ZooMap},
   
 ]
 
