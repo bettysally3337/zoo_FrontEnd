@@ -1,7 +1,8 @@
 <template>
   <nav>
     <router-link to="/">Home</router-link> |
-    <router-link to="/LatestNews">最新消息</router-link>
+    <router-link to="/LatestNews">最新消息</router-link> |
+    <router-link to="/Facility">園區設施</router-link>
   </nav>
   <router-view />
 </template>

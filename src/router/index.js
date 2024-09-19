@@ -1,7 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import LatestNews from '@/views/LatestNews.vue'
+import Index from "@/pages/Index.vue"
+import LatestNews from '@/pages/LatestNews.vue'
 import HomeView from '@/pages/HomeView.vue'
+import Facility from '@/pages/Facility.vue'
 const routes = [
+  {
+    path:'/',
+    name:'Index',
+    component:Index
+  },
   
   {
     path: '/LatestNews',
@@ -9,6 +16,11 @@ const routes = [
     component: LatestNews
   },
   { path: '/ToTheZone', component: HomeView },
+  {
+    path:'/Facility', 
+    name: 'Facility',
+    component:Facility
+  }
   
 ]
 

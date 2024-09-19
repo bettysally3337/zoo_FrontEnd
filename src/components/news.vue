@@ -2,10 +2,11 @@
   <div id="news" class="container justify-content-evenly">
     <div class="row justify-content-evenly align-items-center">
       <a
+        @click="sendData(item)"
         v-for="item in result.slice(0, 9)"
-        v-bind:href="item.Source"
         class="col-md-4 col-lg-3 col-12 m-1"
       >
+        <!-- v-bind:href="item.Source" -->
         <div
           class="newItem d-flex align-items-end"
           :style="{
@@ -19,20 +20,21 @@
         </div>
       </a>
     </div>
-    <a
+    <!-- <a
       id="showMore"
       class="btn btn-primary"
       href="https://www.zoo.gov.taipei/News_Photo.aspx?n=BD065B2FA7782989&sms=72544237BBE4C5F6"
       role="button"
       >顯示更多</a
-    >
+    > -->
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from "vue";
+import { defineEmits } from "vue";
 
-const result = ref([]); // 用于存储 API 响应的数据
+const result = ref([]); // 儲存API響應數據
 // let result;
 
 //抓取資料
@@ -61,6 +63,13 @@ async function makeRequest() {
     console.error("Error:", error);
   }
 }
+
+const emit = defineEmits();
+
+function sendData(item) {
+  const data = { item };
+  emit("send-news", data);
+}
 // export default {
 //   name: 'news',
 
@@ -80,6 +89,7 @@ async function makeRequest() {
     width: 100%;
     margin: 0;
     a {
+      cursor: pointer;
       .newItem {
         &:hover {
           transform: scale(1.05);
