@@ -8,7 +8,9 @@
       <div class="table-header">
         <div class="header__item"><a id="no" class="filter__link" href="#">ID</a></div>
         <div class="header__item"><a id="name" class="filter__link filter__link--number" href="#">Name</a></div>
-        <div class="header__item"><a id="description" class="filter__link filter__link--number" href="#">Description</a></div>
+        <div class="header__item"><a id="behavior" class="filter__link filter__link--number" href="#">Behavior</a></div>
+        <div class="header__item"><a id="feature" class="filter__link filter__link--number" href="#">Feature</a></div>
+        <div class="header__item"><a id="image" class="filter__link filter__link--number" href="#">Image</a></div>
         <!-- <div class="header__item"><a id="losses" class="filter__link filter__link--number" href="#">Create Date</a> -->
       </div>
 
@@ -16,9 +18,11 @@
     
       <div class="table-content">
         <div v-for="value in el" class="table-row">
-          <div class="table-data">{{ value.productNo }}</div>
-          <div class="table-data">{{ value.productName }}</div>
-          <div class="table-data">{{ value.description }}</div>
+          <div class="table-data">{{ value.idx }}</div>
+          <div class="table-data">{{ value.a_Name_Ch }}</div>
+          <div class="table-data">{{ value.a_Behavior }}</div>
+          <div class="table-data">{{ value.a_Feature }}</div>
+          <div class="table-data"><img :src= value.a_Pic01_URL :alt= value.a_Pic01_ALT ></div>
           <!-- <div class="table-data">{{ value.createData }}</div> -->
         </div>
       </div>
@@ -49,13 +53,14 @@ onMounted(() => {
   var area_title = location.search.substring(1);
   // Make a request for a user with a given ID
   // axios.get('http://34.19.76.169:5000/v1/my-first-api/"兒童動物區"')
-  axios.get('http://localhost:5000/v1/my-first-api/' + area_title)
+  // axios.get('http://localhost:5000/v1/my-first-api/' + area_title)
+  axios.get('https://localhost:5000/ZonedAnimal/' + area_title)
     .then(function (response) {
       // handle success
       console.log(response);
-      el.value = response.data.data;
+      el.value = response.data;
 
-      console.log(el.value);
+      console.log("el = " + el);
 
     })
     .catch(function (error) {
