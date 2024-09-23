@@ -1,32 +1,50 @@
 <template>
-    <Banner />
+    <Banner :msg=area_title />
     
-    <HelloWorld msg="我的Vue專案你好" />
-    <div>Hello</div>
-    <div class="container">
-    <div class="table">
-      <div class="table-header">
-        <div class="header__item"><a id="no" class="filter__link" href="#">ID</a></div>
-        <div class="header__item"><a id="name" class="filter__link filter__link--number" href="#">Name</a></div>
-        <div class="header__item"><a id="behavior" class="filter__link filter__link--number" href="#">Behavior</a></div>
-        <div class="header__item"><a id="feature" class="filter__link filter__link--number" href="#">Feature</a></div>
-        <div class="header__item"><a id="image" class="filter__link filter__link--number" href="#">Image</a></div>
-        <!-- <div class="header__item"><a id="losses" class="filter__link filter__link--number" href="#">Create Date</a> -->
-      </div>
-
-    
-    
-      <div class="table-content">
-        <div v-for="value in el" class="table-row">
-          <div class="table-data">{{ value.idx }}</div>
-          <div class="table-data">{{ value.a_Name_Ch }}</div>
-          <div class="table-data">{{ value.a_Behavior }}</div>
-          <div class="table-data">{{ value.a_Feature }}</div>
-          <div class="table-data"><img :src= value.a_Pic01_URL :alt= value.a_Pic01_ALT ></div>
-          <!-- <div class="table-data">{{ value.createData }}</div> -->
+    <!-- <HelloWorld msg="我的動物園Vue專案你好" /> -->
+    <h1>{{ area_title }}</h1>
+    <div class="container-fluid">
+      <div v-for="(value, index) in el">
+        <div class="card" data-animation="true">
+          <div class="card-header p-0 position-relative mt-6 mx-6 col-m z-index-2">
+            <h4 class="font-weight-normal mt-3">
+              <a>{{ value.a_Name_Ch }}</a>
+            </h4>
+            <h8 class="font-weight-normal mt-3">
+              <a>{{ value.a_Name_En }}</a> / <a>{{ value.a_Name_Latin }}</a>
+            </h8>
+            <a class="d-block blur-shadow-image">
+              <img :src=value.a_Pic01_URL :alt=value.a_Pic01_ALT class="img-fluid shadow border-radius-lg">
+            </a>
+            <div class="colored-shadow" :style="{ 'background-image': 'url(' + value.a_Pic01_URL + ')' }"></div>
+          </div>
+          <div class="card-body text-center">
+            <div class="d-flex mt-n6 mx-auto">
+              <a class="btn btn-link text-primary ms-auto border-0" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Refresh">
+                <i class="material-icons text-lg">refresh</i>
+              </a>
+              <button class="btn btn-link text-info me-auto border-0" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit">
+                <i class="material-icons text-lg">edit</i>
+              </button>
+            </div>
+            <h5 class="font-weight-normal mt-3">
+              <span v-for="(v, index) in value.a_Location.split(';')">
+              <a :href="'http://localhost:8000/ToTheZone/?' + v"> {{ v }}</a>
+              <span v-if="index < value.a_Location.split(';').length-1">,</span></span>
+            </h5>
+            <p class="mb-0">
+              {{ value.a_Feature }}
+            </p>
+          </div>
+          <hr class="dark horizontal my-0">
+          <div class="card-footer d-flex">
+            <p class="font-weight-normal my-auto"> {{ value.a_Conservation }}</p>
+            <i class="material-icons position-relative ms-auto text-lg me-1 my-auto">生存地</i>
+            <p class="text-sm my-auto"> {{ value.a_Distribution }}</p>
+          </div>
         </div>
       </div>
-    </div>
+    
     </div>
 
     <el-calendar>
@@ -46,11 +64,11 @@ import axios from 'axios'
 import { ref, onMounted } from 'vue'
 
 const el = ref();
-
+var area_title;
 // 網頁載入時會觸發的方法
 onMounted(() => {
   console.log("test-" + location.search);
-  var area_title = location.search.substring(1);
+  area_title = decodeURI(location.search.substring(1));
   // Make a request for a user with a given ID
   // axios.get('http://34.19.76.169:5000/v1/my-first-api/"兒童動物區"')
   // axios.get('http://localhost:5000/v1/my-first-api/' + area_title)
