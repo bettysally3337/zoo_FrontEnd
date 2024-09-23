@@ -1,13 +1,15 @@
 <template>
   <ul class="nav nav-tabs">
     <li class="nav-item">
-      <a class="nav-link active" aria-current="page" href="#">餐飲服務</a>
+      <a class="nav-link active" aria-current="page" href="/foodstand"
+        >餐飲服務</a
+      >
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">特色商店</a>
+      <a class="nav-link" href="/giftshop">特色商店</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Link</a>
+      <a class="nav-link" href="/guestservices">其他服務</a>
     </li>
   </ul>
   <router-view />

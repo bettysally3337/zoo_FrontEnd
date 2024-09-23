@@ -44,6 +44,7 @@ async function makeRequest() {
   }
 }
 
+//傳送被點擊的項目給LatestNews
 const emit = defineEmits();
 function sendEvents(item) {
   const data = { item };
