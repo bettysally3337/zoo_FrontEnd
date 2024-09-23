@@ -32,7 +32,7 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
-import { defineEmits } from "vue";
+// import { defineEmits } from "vue";
 
 const result = ref([]); // 儲存API響應數據
 // let result;

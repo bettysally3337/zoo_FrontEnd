@@ -1,5 +1,5 @@
 <template>
-  <div id="announcements" class="container">
+  <div id="announcements">
     <h3>異動資訊</h3>
     <div
       v-for="(item, index) in result.slice(0, 3)"
@@ -17,7 +17,7 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
-import { defineEmits } from "vue";
+// import { defineEmits } from "vue";
 
 const result = ref([]);
 onMounted(() => {

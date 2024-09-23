@@ -3,6 +3,8 @@ import Index from "@/pages/Index.vue"
 import LatestNews from '@/pages/LatestNews.vue'
 import HomeView from '@/pages/HomeView.vue'
 import Facility from '@/pages/Facility.vue'
+import facilityRoutes from './facility'
+
 const routes = [
   {
     path:'/',
@@ -20,8 +22,8 @@ const routes = [
     path:'/Facility', 
     name: 'Facility',
     component:Facility
-  }
-  
+  },
+  ...facilityRoutes,
 ]
 
 const router = createRouter({

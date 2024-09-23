@@ -1,19 +1,17 @@
 <template>
   <div id="foodstand">
-    <!-- <div v-for="item in result"> -->
-    <div class="card" style="width: 18rem">
-      <img src="..." class="card-img-top" alt="..." />
+    <div v-for="item in result" class="card" style="width: 18rem">
+      <img :src="item.picUrl" class="card-img-top" alt="..." />
       <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
+        <h5 class="card-title">{{ item.title }}</h5>
+        <p class="card-text" id="meal">
+          {{ item.meal }}
         </p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+        <p id="location">{{ item.location }}</p>
+        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
       </div>
     </div>
   </div>
-  <!-- </div> -->
 </template>
 
 <script setup>
@@ -23,21 +21,54 @@ import { ref, onMounted } from "vue";
 onMounted(() => {
   makeRequest();
 });
-async function makeRequest(params) {
+async function makeRequest() {
   try {
-    fetch("http://localhost:5134/facility")
-      .then((Response) => {
+    fetch("http://localhost:5134/Facility/foodstand")
+      .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error status!${response.status}`);
         }
         return response.json();
       })
       .then((data) => {
-        console.log("facility api回傳資料:" + JSON.parse(data.data));
-        result = JSON.parse(data.data);
+        console.log(data);
+        result.value = data;
+
+        //替換成換行符號---沒有效
+        // result.value.forEach((value) => {
+        //   console.log(value + value.meal);
+        //   let string = value.meal.replace("/\r\n", "**好<br />");
+        //   value.meal = string;
+        // });
+
+        // console.log("facility api回傳資料:" + JSON.parse(data.data));
+        // result = JSON.parse(data.data);
       });
   } catch (error) {
     console.log(error);
   }
 }
 </script>
+
+<style lang="scss" scoped>
+@import "@/assets/styles/main.scss";
+
+#foodstand {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  div.card {
+    margin: 0.5em;
+    border: 3px dashed $themeColor3;
+    .card-title {
+      color: $themeColor2;
+    }
+    #meal {
+      white-space: pre-line;
+    }
+    #location {
+      color: $themeColor5;
+    }
+  }
+}
+</style>

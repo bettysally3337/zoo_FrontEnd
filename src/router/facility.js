@@ -4,31 +4,35 @@ import foodstand from "@/components/foodstand.vue";
 import giftshop from "@/components/giftshop.vue";
 import guestservices from "@/components/guestservices.vue";
 
-const routes = [
+const facilityRoutes = [
   {
-    path: "/",
+    path: "/Facility",
+    redirect:"/Facility/foodstand",
     name: "Facility",
     component: Facility,
-  },
-
-  {
-    path: "/foodstand",
-    name: "foodstand",
-    component: foodstand,
-  },
-
-  { path: "/giftshop", name: "giftshop", component: giftshop },
-
-  {
-    path: "/guestservices",
-    name: "guestservices",
-    component: guestservices,
+    children:[
+      {
+        path:"foodstand",
+        // name:"foodstand",
+        component:foodstand
+      },
+      {
+        path:'giftshop',
+        name:"giftshop",
+        component:giftshop
+      },
+      {
+        path:"guestservices",
+        name:"guestservices",
+        component:guestservices
+      }
+    ]
   },
 ];
 
-const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
-  routes,
-});
+// const facilityRoutes = createRouter({
+//   history: createWebHistory(process.env.BASE_URL),
+//   routes,
+// });
 
-export default router;
+export default facilityRoutes;

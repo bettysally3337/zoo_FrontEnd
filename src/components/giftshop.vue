@@ -1,19 +1,18 @@
 <template>
   <div id="giftshop">
-    <!-- <div v-for="item in result"> -->
-    <div class="card" style="width: 18rem">
-      <img src="..." class="card-img-top" alt="..." />
+    <div v-for="item in result" class="card" style="width: 18rem">
+      <img :src="item.picUrl" class="card-img-top" alt="..." />
       <div class="card-body">
-        <h5 class="card-title">Card title</h5>
+        <h5 class="card-title">{{ item.title }}</h5>
         <p class="card-text">
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
+          {{ item.brief }}
         </p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+        <p id="memo">{{ item.memo }}</p>
+        <p id="location">{{ item.location }}</p>
+        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
       </div>
     </div>
   </div>
-  <!-- </div> -->
 </template>
 
 <script setup>
@@ -25,19 +24,40 @@ onMounted(() => {
 });
 async function makeRequest(params) {
   try {
-    fetch("http://localhost:5134/giftshop")
-      .then((Response) => {
+    fetch("http://localhost:5134/Facility/giftshop")
+      .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error status!${response.status}`);
         }
         return response.json();
       })
       .then((data) => {
-        console.log("facility api回傳資料:" + JSON.parse(data.data));
-        result = JSON.parse(data.data);
+        console.log("facility api回傳資料:");
+        console.log(data);
+        result.value = data;
       });
   } catch (error) {
     console.log(error);
   }
 }
 </script>
+
+<style lang="scss" scoped>
+@import "@/assets/styles/main.scss";
+
+#giftshop {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  div.card {
+    margin: 0.5em;
+    border: 3px dashed $themeColor3;
+    .card-title {
+      color: $themeColor2;
+    }
+    #location {
+      color: $themeColor5;
+    }
+  }
+}
+</style>

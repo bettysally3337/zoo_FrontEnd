@@ -18,7 +18,7 @@
 <script setup>
 const result = ref([]); // 儲存api資料
 import { ref, onMounted } from "vue";
-import { defineEmits } from "vue";
+// import { defineEmits } from "vue";
 
 onMounted(() => {
   makeRequest();

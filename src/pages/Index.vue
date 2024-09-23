@@ -15,7 +15,7 @@
         alt=""
       /><br />園區地圖</a
     >
-    <a class="nav-link col-sm-12 col-md-4" href="/Facilities"
+    <a class="nav-link col-sm-12 col-md-4" href="/Facility"
       ><img src="@/assets/index_icons/store.png" class="icon" alt="" />
       <br />
       園區設施</a
