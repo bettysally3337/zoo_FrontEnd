@@ -1,14 +1,17 @@
 <template>
   <img src="@/assets/zoo_index.jpg" class="img-fluid" alt="..." />
   <nav class="nav nav-pills nav-justified">
-    <a class="nav-link col-sm-12 col-md-4" aria-current="page" href="#"
+    <a
+      class="nav-link col-sm-12 col-md-4"
+      aria-current="page"
+      href="/OperatingInfo"
       ><img
         src="@/assets/index_icons/clock.png"
         class="icon"
         alt=""
       /><br />營業時間</a
     >
-    <a class="nav-link col-sm-12 col-md-4" href="#"
+    <a class="nav-link col-sm-12 col-md-4" href="/ToTheZone"
       ><img
         src="@/assets/index_icons/map.png"
         class="icon"

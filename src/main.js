@@ -12,4 +12,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 // 引入 Bootstrap JS
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
+//引入 Boostrap icon
+import 'bootstrap-icons/font/bootstrap-icons.css';
+
 createApp(App).use(router).use(BootstrapVue3).mount('#app')

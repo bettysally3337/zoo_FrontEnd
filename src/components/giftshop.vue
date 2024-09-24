@@ -51,7 +51,7 @@ async function makeRequest(params) {
   justify-content: center;
   div.card {
     margin: 0.5em;
-    border: 3px dashed $themeColor3;
+    border: 8px dashed $themeColor3;
     .card-title {
       color: $themeColor2;
     }
