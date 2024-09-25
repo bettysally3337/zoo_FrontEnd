@@ -1,18 +1,103 @@
 <template>
   <div class="container">
-  <h1 class="title">{{ msg }}</h1>
+    <!-- <h1 class="title">{{ parentMsg }}</h1> -->
+    <div v-for="value in el">
+    
+    <!-- -------- START Features w/ icons and text on left & gradient title and text on right -------- -->
+    <section class="py-9">
+      <div class="container">
+        <div><button type="button" class="btn bg-gradient-info w-auto me-2"><a :href=value.e_URL target="_blank">{{parentMsg}}語音導覽連結</a></button></div>
+        <div class="row">
+          <div class="col-lg-6 my-auto">
+            <h1 class="title">{{ parentMsg }}</h1>
+            <!-- <p class="pe-5">Pain is what we go through as we become older. We get insulted by others, lose trust for those others. We get back stabbed by friends. It becomes harder for us to give others a hand.</p>
+            <a href="javascript:;" class="text-primary icon-move-right">More about us
+              <i class="fas fa-arrow-right text-sm ms-1"></i>
+            </a> -->
+          </div>
+          <div class="col-lg-6 mt-lg-0 mt-5 ps-lg-0 ps-0">
+            <div class="p-3 info-horizontal">
+              <div class="icon icon-shape  bg-gradient-primary shadow-primary text-center">
+                <i class="fas fa-ship opacity-10"></i>
+              </div>
+              <div class="description ps-6">
+                <p class="mb-0">{{ value.e_Category }}</p>
+              </div>
+            </div>
 
+            <div class="p-3 info-horizontal">
+              <div class="icon icon-shape  bg-gradient-primary shadow-primary text-center">
+                <i class="fas fa-handshake opacity-10"></i>
+              </div>
+              <div class="description ps-6">
+                <p class="mb-0">{{ value.e_Info }}</p>
+              </div>
+            </div>
+            <div v-if=value.e_Memo>
+            <div class="p-3 info-horizontal">
+              <div class="icon icon-shape  bg-gradient-primary shadow-primary text-center">
+                <i class="fas fa-hourglass opacity-10"></i>
+              </div>
+              <div class="description ps-6">
+                <p class="mb-0">{{value.e_Memo}}</p>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    </div>
+    <!-- -------- END Features w/ icons and text on left & gradient title and text on right -------- -->
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import axios from 'axios'
+import { ref, onMounted, computed, onBeforeMount, onBeforeUpdate } from 'vue'
 
-defineProps({
-  msg: String,
+const props = defineProps({
+  parentMsg: String,
 })
 
-const count = ref(0)
+// const emits = defineEmits(["update:parentMsg"]);
+
+// const inputValue = computed({
+//   get() {
+//     return props.parentMsg;
+//   },
+//   set(newValue) {
+//     emits("update:parentMsg", newValue);
+//   }
+// });
+
+const el = ref();
+var Zone = '';
+// 網頁載入時會觸發的方法
+onMounted(() => {
+  Zone = props.parentMsg;
+// });
+  console.log('https://localhost:5000/ZonedArea/' + Zone);
+  // Make a request for a user with a given ID
+  // axios.get('http://34.19.76.169:5000/v1/my-first-api/"兒童動物區"')
+  // axios.get('http://localhost:5000/v1/my-first-api/' + area_title)
+  axios.get('https://localhost:5000/ZonedArea/' + Zone)
+    .then(function (response) {
+      // handle success
+      console.log(response);
+      el.value = response.data;
+
+      console.log("el = " + el);
+
+    })
+    .catch(function (error) {
+      // handle error
+      console.log(error);
+    })
+    .finally(function () {
+      // always executed
+    });
+});
 </script>
 
 

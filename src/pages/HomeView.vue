@@ -1,5 +1,5 @@
 <template>
-    <Banner :msg=area_title />
+    <Banner :parentMsg=area_title />
     
     <!-- <HelloWorld msg="我的動物園Vue專案你好" /> -->
     <h1>{{ area_title }}</h1>
@@ -64,11 +64,10 @@ import axios from 'axios'
 import { ref, onMounted } from 'vue'
 
 const el = ref();
-var area_title;
+var area_title = decodeURI(location.search.substring(1));
 // 網頁載入時會觸發的方法
 onMounted(() => {
-  console.log("test-" + location.search);
-  area_title = decodeURI(location.search.substring(1));
+  console.log("test-" + area_title);
   // Make a request for a user with a given ID
   // axios.get('http://34.19.76.169:5000/v1/my-first-api/"兒童動物區"')
   // axios.get('http://localhost:5000/v1/my-first-api/' + area_title)
