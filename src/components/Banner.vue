@@ -109,7 +109,7 @@ onMounted(() => {
 
 body {
   background-color: #212121;
-  font-family: Verdana, Geneva, sans-serif;
+  /* font-family: Verdana, Geneva, sans-serif; */
 }
 
 .container {

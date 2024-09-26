@@ -70,7 +70,7 @@
                   :navigation="navigation"
                   :modules="modules"
                   :autoplay="{
-                    delay: 2000,
+                    delay: 3500,
                     disableOnInteraction: false
                   }"
                   class="mySwiper"
@@ -137,8 +137,10 @@
         </div>
       </div>
     
+      
     </div>
 
+    <Plants :parentMsg=area_title />
     <el-calendar>
       <template #date-cell="{ data }">
         <p :class="data.isSelected ? 'is-selected' : ''">
@@ -151,7 +153,9 @@
   
 <script setup>
 import HelloWorld from '../components/HelloWorld.vue'
-import Banner from '../components/Banner.vue';           // import Swiper JS
+import Banner from '../components/Banner.vue';
+import Plants from '../components/Plants.vue';           
+// import Swiper JS
 import '../swiper/css/style.css';  
 import { Swiper, SwiperSlide } from 'swiper/vue'; // Import Swiper Vue.js components
 import 'swiper/css';                              // Import Swiper styles
@@ -196,8 +200,9 @@ onMounted(() => {
 });
 </script>
 
-<style scoped>
-@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700");
+<style lang=scss scoped>
+// @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700");
+@import "@/assets/styles/main.scss";
 .is-selected {
     color: #1989fa;
 }
@@ -223,7 +228,7 @@ onMounted(() => {
 
 body {
   padding: 24px;
-  font-family: "Source Sans Pro", sans-serif;
+  // font-family: "Source Sans Pro", sans-serif;
   margin: 0;
 }
 
