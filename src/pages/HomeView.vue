@@ -1,6 +1,54 @@
 <template>
     <Banner :parentMsg=area_title />
     
+    <!-- <swiper
+      :loop="true"
+      :pagination="{ clickable: true }"
+      :navigation="navigation"
+      :modules="modules"
+      :autoplay="{
+        delay: 2000,
+        disableOnInteraction: false
+      }"
+      class="mySwiper"
+    >
+   
+        <span v-if=value.a_Pic01_URL>
+          <swiper-slide>
+          <img
+              :src=value.a_Pic01_URL
+              :alt=value.a_Pic01_ALT
+            />
+          </swiper-slide>
+        </span>
+        <span v-if=value.a_Pic02_URL>
+          <swiper-slide>
+          <img
+              :src=value.a_Pic02_URL
+              :alt=value.a_Pic02_ALT
+            />
+          </swiper-slide>
+        </span>
+        <span v-if=value.a_Pic03_URL>
+          <swiper-slide>
+          <img
+              :src=value.a_Pic03_URL
+              :alt=value.a_Pic03_ALT
+            />
+          </swiper-slide>
+        </span>
+        <span v-if=value.a_Pic04_URL>
+          <swiper-slide>
+          <img
+              :src=value.a_Pic04_URL
+              :alt=value.a_Pic04_ALT
+            />
+          </swiper-slide>
+        </span>
+   
+      <div class="swiper-button-prev"/>
+      <div class="swiper-button-next" />
+    </swiper> -->
     <!-- <HelloWorld msg="我的動物園Vue專案你好" /> -->
     <h1>{{ area_title }}</h1>
     <div class="container-fluid">
@@ -14,7 +62,51 @@
               <a>{{ value.a_Name_En }}</a> / <a>{{ value.a_Name_Latin }}</a>
             </h8>
             <a class="d-block blur-shadow-image">
-              <img :src=value.a_Pic01_URL :alt=value.a_Pic01_ALT class="img-fluid shadow border-radius-lg">
+              <!-- <img :src=value.a_Pic01_URL :alt=value.a_Pic01_ALT class="img-fluid shadow border-radius-lg">
+                -->
+                <swiper
+                  :loop="true"
+                  :pagination="{ clickable: true }"
+                  :navigation="navigation"
+                  :modules="modules"
+                  :autoplay="{
+                    delay: 2000,
+                    disableOnInteraction: false
+                  }"
+                  class="mySwiper"
+                >
+                      <swiper-slide v-if=value.a_Pic01_URL>
+                      <img
+                          :src=value.a_Pic01_URL
+                          :alt=value.a_Pic01_ALT
+                           class="img-fluid shadow border-radius-lg"
+                        />
+                      </swiper-slide>
+                      <swiper-slide v-if=value.a_Pic02_URL>
+                      <img
+                          :src=value.a_Pic02_URL
+                          :alt=value.a_Pic02_ALT
+                           class="img-fluid shadow border-radius-lg"
+                        />
+                      </swiper-slide>
+                      <swiper-slide v-if=value.a_Pic03_URL>
+                      <img
+                          :src=value.a_Pic03_URL
+                          :alt=value.a_Pic03_ALT
+                           class="img-fluid shadow border-radius-lg"
+                        />
+                      </swiper-slide>
+                      <swiper-slide v-if=value.a_Pic04_URL>
+                      <img
+                          :src=value.a_Pic04_URL
+                          :alt=value.a_Pic04_ALT
+                           class="img-fluid shadow border-radius-lg"
+                        />
+                      </swiper-slide>
+              
+                  <div class="swiper-button-prev"/>
+                  <div class="swiper-button-next" />
+                </swiper>
             </a>
             <div class="colored-shadow" :style="{ 'background-image': 'url(' + value.a_Pic01_URL + ')' }"></div>
           </div>
@@ -59,9 +151,23 @@
   
 <script setup>
 import HelloWorld from '../components/HelloWorld.vue'
-import Banner from '../components/Banner.vue'
+import Banner from '../components/Banner.vue';           // import Swiper JS
+import '../swiper/css/style.css';  
+import { Swiper, SwiperSlide } from 'swiper/vue'; // Import Swiper Vue.js components
+import 'swiper/css';                              // Import Swiper styles
+import 'swiper/css/navigation';                   // Swiper 底下圓點
+import 'swiper/css/pagination';                   // Swiper 左右箭頭
+import { Autoplay, Navigation, Pagination } from 'swiper/modules'; // import required modules
+
+const modules = ref([Autoplay, Navigation, Pagination]);
+const navigation = ref({
+  nextEl: '.swiper-button-next',
+  prevEl: '.swiper-button-prev'
+});
+
 import axios from 'axios'
 import { ref, onMounted } from 'vue'
+
 
 const el = ref();
 var area_title = decodeURI(location.search.substring(1));
