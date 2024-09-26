@@ -1,62 +1,72 @@
 <template>
-    <div id="events" class="container">
-        <h3 >
-            舉辦活動
-        </h3>
-        <div v-for="(item, index) in result.slice(0,3)" id="list-example" class="list-group">
-            <a v-bind:href="item.Source" class="list-group-item list-group-item-action" >{{item.title}}</a>
-        </div>       
+  <div id="events" class="container">
+    <h3>舉辦活動</h3>
+    <div
+      v-for="(item, index) in result.slice(0, 3)"
+      id="list-example"
+      class="list-group"
+    >
+      <a
+        @click="sendEvents(item)"
+        class="list-group-item list-group-item-action"
+        >{{ item.title }}</a
+      >
     </div>
+  </div>
 </template>
-    
+
 <script setup>
 const result = ref([]); // 儲存api資料
-import { ref,onMounted } from 'vue';
+import { ref, onMounted } from "vue";
+// import { defineEmits } from "vue";
 
-   onMounted(()=>{makeRequest();
-   })
-    async function makeRequest() {
-        try{
-            fetch('http://localhost:5134/zoo-events')
-            .then(response=>{
-                if(!response.ok){
-                    throw new Error(`HTTP error status!${response.status}`)
-                }
-                return response.json();
-            })
-            .then(data=>{
-                console.log('ZOO-EVENTS DATA:', JSON.parse(data.data));
-               
-                result.value = JSON.parse(data.data);
-                console.log("z00-events result");
-                console.log(result.value);
-              
-            })
+onMounted(() => {
+  makeRequest();
+});
+async function makeRequest() {
+  try {
+    fetch("http://localhost:5134/zoo-events")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error status!${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("ZOO-EVENTS DATA:", JSON.parse(data.data));
 
-        }
-        catch(error){
-            console.log(e);
-        }
-    }
+        result.value = JSON.parse(data.data);
+        console.log("z00-events result");
+        console.log(result.value);
+      });
+  } catch (error) {
+    console.log(e);
+  }
+}
+
+//傳送被點擊的項目給LatestNews
+const emit = defineEmits();
+function sendEvents(item) {
+  const data = { item };
+  emit("send-events", data);
+}
 </script>
-    
-    
+
 <style lang="scss" scoped>
-   
-   @import '@/assets/styles/main.scss';
-    
-    #events{
-        width: 45%;
-        height: 30%;
-        float: left;
-        margin: 1%;
-        h3{
-            padding: 0.25em;
-            color: $themeColor4;
-            background-color: $themeColor2;   
-        }
-       
-    }   
-    
+@import "@/assets/styles/main.scss";
+
+#events {
+  width: 45%;
+  height: 30%;
+  float: left;
+  margin: 1%;
+  h3 {
+    padding: 0.25em;
+    color: $themeColor4;
+    background-color: $themeColor2;
+  }
+  a {
+    cursor: pointer;
+  }
+}
 </style>
-    

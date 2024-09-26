@@ -18,5 +18,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import "./assets/css/nucleo-icons.css"
 // import "https://kit.fontawesome.com/42d5adcbca.js"
 import "./assets/css/material-kit.min.css"
+//引入 Boostrap icon
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 createApp(App).use(router).use(BootstrapVue3).mount('#app')

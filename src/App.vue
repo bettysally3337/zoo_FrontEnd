@@ -1,8 +1,9 @@
 <template>
   <nav>
     <router-link to="/">Home</router-link> |
-    <router-link to="/ZooMap">動物園</router-link> |
-    <router-link to="/LatestNews">最新消息</router-link>
+    <router-link to="/LatestNews">最新消息</router-link> |
+    <router-link to="/ZooMap">園區地圖</router-link> |
+    <router-link to="/Facility">園區設施</router-link>
   </nav>
   <router-view />
 </template>
@@ -18,15 +19,16 @@
 }
 
 nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: $themeColor6;
-}
-
-nav a.router-link-exact-active {
-  color: $themeColor3;
+  padding: 20px 10px;
+  display: flex;
+  justify-content: end;
+  a {
+    margin: 0% 1%;
+    font-weight: bold;
+    color: $themeColor6;
+    &.router-link-active {
+      color: $themeColor3;
+    }
+  }
 }
 </style>

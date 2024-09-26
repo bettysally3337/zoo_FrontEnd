@@ -1,8 +1,18 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import LatestNews from '@/views/LatestNews.vue'
+import Index from "@/pages/Index.vue"
+import LatestNews from '@/pages/LatestNews.vue'
 import HomeView from '@/pages/HomeView.vue'
 import ZooMap from '@/pages/ZooMap.vue'
+import Facility from '@/pages/Facility.vue'
+import facilityRoutes from './facility'
+import operatinginfo from '@/components/operatinginfo.vue'
+
 const routes = [
+  {
+    path:'/',
+    name:'Index',
+    component:Index
+  },
   
   {
     path: '/LatestNews',
@@ -12,6 +22,17 @@ const routes = [
   { path: '/ToTheZone', component: HomeView },
   { path: '/ZooMap', component: ZooMap},
   
+  {
+    path:'/Facility', 
+    name: 'Facility',
+    component:Facility
+  },
+  {
+    path:'/OperatingInfo',
+    name:"Operating Information",
+    component:operatinginfo
+  },
+  ...facilityRoutes,
 ]
 
 const router = createRouter({
