@@ -2,6 +2,7 @@
   <div id="events" class="container">
     <h3>舉辦活動</h3>
     <div
+      v-if="result && result.length"
       v-for="(item, index) in result.slice(0, 3)"
       id="list-example"
       class="list-group"
@@ -12,6 +13,7 @@
         >{{ item.title }}</a
       >
     </div>
+    <div v-else>Loading...</div>
   </div>
 </template>
 
@@ -25,7 +27,7 @@ onMounted(() => {
 });
 async function makeRequest() {
   try {
-    fetch("http://localhost:5134/zoo-events")
+    fetch("https://localhost:7248/zoo-events")
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error status!${response.status}`);
@@ -33,9 +35,7 @@ async function makeRequest() {
         return response.json();
       })
       .then((data) => {
-        console.log("ZOO-EVENTS DATA:", JSON.parse(data.data));
-
-        result.value = JSON.parse(data.data);
+        result.value = JSON.parse(data);
         console.log("z00-events result");
         console.log(result.value);
       });
@@ -61,12 +61,17 @@ function sendEvents(item) {
   float: left;
   margin: 1%;
   h3 {
+    font-family: inherit;
     padding: 0.25em;
     color: $themeColor4;
     background-color: $themeColor2;
   }
   a {
+    color: $themeColor5;
     cursor: pointer;
+    &:hover {
+      color: $themeColor1;
+    }
   }
 }
 </style>

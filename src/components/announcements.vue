@@ -2,6 +2,7 @@
   <div id="announcements">
     <h3>異動資訊</h3>
     <div
+      v-if="result && result.length"
       v-for="(item, index) in result.slice(0, 3)"
       id="list-example"
       class="list-group"
@@ -12,6 +13,7 @@
         >{{ item.title }}</a
       >
     </div>
+    <div v-else>Loading...</div>
   </div>
 </template>
 
@@ -26,7 +28,7 @@ onMounted(() => {
 
 async function makeRequest() {
   try {
-    fetch("http://localhost:5134/zoo-announcements")
+    fetch("https://localhost:7248/zoo-announcements")
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Http error! Status:${response.status}`);
@@ -34,8 +36,8 @@ async function makeRequest() {
         return response.json();
       })
       .then((data) => {
-        console.log("Data:", JSON.parse(data.data));
-        result.value = JSON.parse(data.data);
+        console.log("Data:", JSON.parse(data));
+        result.value = JSON.parse(data);
       })
       .catch((error) => console.error("Error:", error));
   } catch (error) {
@@ -59,13 +61,19 @@ function sendAnnouncements(item) {
   height: 30%;
   float: right;
   margin: 1%;
+
   h3 {
+    font-family: inherit;
     padding: 0.25em;
     color: $themeColor4;
     background-color: $themeColor2;
   }
   a {
+    color: $themeColor5;
     cursor: pointer;
+    &:hover {
+      color: $themeColor1;
+    }
   }
 }
 </style>
