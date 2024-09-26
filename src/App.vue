@@ -22,6 +22,7 @@ nav {
   padding: 20px 10px;
   display: flex;
   justify-content: end;
+  font-size: larger;
   a {
     margin: 0% 1%;
     font-weight: bold;
