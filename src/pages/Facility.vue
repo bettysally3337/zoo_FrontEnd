@@ -31,7 +31,7 @@
 @import "@/assets/styles/main.scss";
 
 ul.nav {
-  margin: 5px 10px;
+  margin: 5px 60px;
   font-size: 1.2em;
 
   border-color: $themeColor3;

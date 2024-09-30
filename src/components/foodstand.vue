@@ -1,13 +1,13 @@
 <template>
   <div id="foodstand">
     <div v-for="item in result" class="card" style="width: 18rem">
-      <img :src="item.picUrl" class="card-img-top" alt="..." />
+      <img :src="item.s_Pic01_URL" class="card-img-top" alt="..." />
       <div class="card-body">
-        <h5 class="card-title">{{ item.title }}</h5>
+        <h5 class="card-title">{{ item.s_Title }}</h5>
         <p class="card-text" id="meal">
-          {{ item.meal }}
+          {{ item.s_Meal }}
         </p>
-        <p id="location">{{ item.location }}</p>
+        <p id="location">{{ item.s_Location }}</p>
         <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
       </div>
     </div>
@@ -23,7 +23,7 @@ onMounted(() => {
 });
 async function makeRequest() {
   try {
-    fetch("http://localhost:5134/Facility/foodstand")
+    fetch("https://localhost:5000/Facility/foodstand")
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error status!${response.status}`);
@@ -60,14 +60,18 @@ async function makeRequest() {
   div.card {
     margin: 0.5em;
     border: 8px dashed $themeColor3;
-    .card-title {
-      color: $themeColor2;
-    }
-    #meal {
-      white-space: pre-line;
-    }
-    #location {
-      color: $themeColor5;
+    .card-body {
+      color: $themeColor6;
+      font-family: inherit;
+      .card-title {
+        color: $themeColor2;
+      }
+      #meal {
+        white-space: pre-line;
+      }
+      #location {
+        color: $themeColor5;
+      }
     }
   }
 }

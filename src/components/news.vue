@@ -2,6 +2,7 @@
   <div id="news" class="container justify-content-evenly">
     <div class="row justify-content-evenly align-items-center">
       <a
+        v-if="result && result.length"
         @click="sendData(item)"
         v-for="item in result.slice(0, 9)"
         class="col-md-4 col-lg-3 col-12 m-1"
@@ -19,14 +20,8 @@
           </a>
         </div>
       </a>
+      <div v-else>Loading...</div>
     </div>
-    <!-- <a
-      id="showMore"
-      class="btn btn-primary"
-      href="https://www.zoo.gov.taipei/News_Photo.aspx?n=BD065B2FA7782989&sms=72544237BBE4C5F6"
-      role="button"
-      >顯示更多</a
-    > -->
   </div>
 </template>
 
@@ -44,7 +39,7 @@ onMounted(() => {
 
 async function makeRequest() {
   try {
-    fetch("http://localhost:5134/zoo-news")
+    fetch("https://localhost:5000/zoo-news")
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
@@ -53,10 +48,10 @@ async function makeRequest() {
       })
       .then((data) => {
         //因為回傳的是字串，所以把他轉成JSON
-        console.log("Data:", JSON.parse(data.data));
-        result.value = JSON.parse(data.data);
+        console.log("Data:", JSON.parse(data));
+        result.value = JSON.parse(data);
 
-        // return result;
+        return result;
       })
       .catch((error) => console.error("Error:", error));
   } catch (error) {
