@@ -61,6 +61,9 @@
             <h8 class="font-weight-normal mt-3">
               <a>{{ value.a_Name_En }}</a> / <a>{{ value.a_Name_Latin }}</a>
             </h8>
+            <h6 class="font-weight-normal mt-3">
+              <a>{{ value.a_Phylum }}</a> / <a>{{ value.a_Class }}</a> / <a>{{ value.a_Order }}</a> / <a>{{ value.a_Family }}</a> <span v-if="value.a_AlsoKnown">/ <a>{{ value.a_AlsoKnown }}</a></span>
+            </h6>
             <a class="d-block blur-shadow-image">
               <!-- <img :src=value.a_Pic01_URL :alt=value.a_Pic01_ALT class="img-fluid shadow border-radius-lg">
                 -->
@@ -127,12 +130,24 @@
             <p class="mb-0">
               {{ value.a_Feature }}
             </p>
+            <span v-if="value.a_Crisis">
+              <i class="material-icons position-relative ms-auto text-lg me-1 my-auto">危機</i>
+              <p class="mb-0">
+                {{ value.a_Crisis }}
+              </p>
+            </span>
           </div>
           <hr class="dark horizontal my-0">
           <div class="card-footer d-flex">
             <p class="font-weight-normal my-auto"> {{ value.a_Conservation }}</p>
             <i class="material-icons position-relative ms-auto text-lg me-1 my-auto">生存地</i>
             <p class="text-sm my-auto"> {{ value.a_Distribution }}</p>
+          </div>
+          <hr class="dark horizontal my-0">
+          <div class="card-footer d-flex">
+            <p class="font-weight-normal my-auto"> {{ value.a_Habitat }}</p>
+            <i class="material-icons position-relative ms-auto text-lg me-1 my-auto">食物</i>
+            <p class="text-sm my-auto"> {{ value.a_Diet }}</p>
           </div>
         </div>
       </div>

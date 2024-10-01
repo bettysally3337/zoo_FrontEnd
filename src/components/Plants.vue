@@ -10,6 +10,9 @@
           <h8 class="font-weight-normal mt-3">
             <a>{{ value.f_Name_En }}</a> / <a>{{ value.f_Name_Latin }}</a>
           </h8>
+          <h6 class="font-weight-normal mt-3">
+              <a>{{ value.f_Family }}</a> / <a>{{ value.f_Genus }}</a> <span v-if="value.f_AlsoKnown">/ <a>{{ value.f_AlsoKnown }}</a></span>
+            </h6>
           <a class="d-block blur-shadow-image">
             <!-- <img :src=value.a_Pic01_URL :alt=value.a_Pic01_ALT class="img-fluid shadow border-radius-lg">
               -->
@@ -69,12 +72,15 @@
             </button>
           </div>
           <h5 class="font-weight-normal mt-3">
-            <span v-for="(v, index) in value.f_Location.split(';')">
+            <span v-for="(v, index) in value.f_Location.split('；')">
             <a :href="'http://localhost:8000/ToTheZone/?' + v"> {{ v }}</a>
-            <span v-if="index < value.f_Location.split(';').length-1">,</span></span>
+            <span v-if="index < value.f_Location.split('；').length-1">,</span></span>
           </h5>
           <p class="mb-0">
             {{ value.f_Feature }}
+          </p>
+          <p class="mb-0">
+            {{ value.f_Function_Application }}
           </p>
         </div>
         <hr class="dark horizontal my-0">
