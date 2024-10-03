@@ -4,7 +4,7 @@
       <HelloWorld msg="動物園地圖" />
       <div>動物園地圖</div>
       
-      <meta http-equiv='refresh' content='0; URL="http://104.214.172.40:3000/iframe.html?globals=backgrounds.value:!hex(F8F8F8);backgrounds.grid:false&amp;args=&amp;id=examples-simple--simple"'>
+      <meta http-equiv='refresh' content='0; URL="http://localhost:3000/iframe.html?globals=backgrounds.value:!hex(F8F8F8);backgrounds.grid:false&amp;args=&amp;id=examples-simple--simple"'>
     </head>
 
     <el-calendar>
