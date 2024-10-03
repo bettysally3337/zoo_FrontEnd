@@ -27,7 +27,7 @@ onMounted(() => {
 });
 async function makeRequest(params) {
   try {
-    fetch("https://localhost:5000/Facility/guestservices")
+    fetch("http://104.214.172.40:5000/Facility/guestservices")
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error status!${response.status}`);

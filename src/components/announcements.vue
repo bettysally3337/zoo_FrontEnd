@@ -28,7 +28,7 @@ onMounted(() => {
 
 async function makeRequest() {
   try {
-    fetch("https://localhost:5000/zoo-announcements")
+    fetch("http://104.214.172.40:5000/zoo-announcements")
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Http error! Status:${response.status}`);
