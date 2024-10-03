@@ -23,7 +23,7 @@ onMounted(() => {
 });
 async function makeRequest() {
   try {
-    fetch("https://localhost:7248/Facility/foodstand")
+    fetch("https://localhost:8000/Facility/foodstand")
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error status!${response.status}`);
