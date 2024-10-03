@@ -13,10 +13,13 @@
     "bootstrap-icons": "^1.11.3",
     "bootstrap-vue-3": "^0.5.1",
     "core-js": "^2.6.5",
-    "swiper": "^11.1.14",
+    "https-agent": "^1.0.0",
     "jquery": "^3.7.1",
+    "swiper": "^11.1.14",
+    "vite": "^5.4.8",
     "vue": "^3.5.3",
-    "vue-router": "^4.0.3"
+    "vue-router": "^4.0.3",
+    "yarn": "^1.22.22"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",

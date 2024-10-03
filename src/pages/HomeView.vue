@@ -124,7 +124,7 @@
             </div>
             <h5 class="font-weight-normal mt-3">
               <span v-for="(v, index) in value.a_Location.split(';')">
-              <a :href="'http://localhost:8000/ToTheZone/?' + v"> {{ v }}</a>
+              <a :href="'http://104.214.172.40:8000/ToTheZone/?' + v"> {{ v }}</a>
               <span v-if="index < value.a_Location.split(';').length-1">,</span></span>
             </h5>
             <p class="mb-0">
@@ -195,8 +195,8 @@ onMounted(() => {
   console.log("test-" + area_title);
   // Make a request for a user with a given ID
   // axios.get('http://34.19.76.169:5000/v1/my-first-api/"兒童動物區"')
-  // axios.get('http://localhost:5000/v1/my-first-api/' + area_title)
-  axios.get('https://localhost:5000/ZonedAnimal/' + area_title)
+  // axios.get('http://104.214.172.40:5000/v1/my-first-api/' + area_title)
+  axios.get('http://104.214.172.40:5000/ZonedAnimal/' + area_title)
     .then(function (response) {
       // handle success
       console.log(response);
