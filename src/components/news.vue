@@ -39,7 +39,7 @@ onMounted(() => {
 
 async function makeRequest() {
   try {
-    fetch("https://localhost:8000/zoo-news")
+    fetch("https://localhost:7248/zoo-news")
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
