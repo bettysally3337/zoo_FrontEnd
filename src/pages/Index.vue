@@ -102,7 +102,7 @@ export default {
         "非洲動物區",
         "溫帶動物區",
       ],
-      zoneLink: "http://localhost:8080/ToTheZone/?",
+      zoneLink: "http://34.168.211.105/ToTheZone/?",
       aniImg: [],
     };
   },

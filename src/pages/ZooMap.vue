@@ -1,25 +1,27 @@
 <template>
-    <head>
- 
-      <HelloWorld msg="動物園地圖" />
-      <div>動物園地圖</div>
-      
-      <meta http-equiv='refresh' content='0; URL="http://localhost:3000/iframe.html?globals=backgrounds.value:!hex(F8F8F8);backgrounds.grid:false&amp;args=&amp;id=examples-simple--simple"'>
-    </head>
+  <head>
+    <HelloWorld msg="動物園地圖" />
+    <div>動物園地圖</div>
 
-    <el-calendar>
-      <template #date-cell="{ data }">
-        <p :class="data.isSelected ? 'is-selected' : ''">
-          {{ data.day.split('-').slice(1).join('-') }}
-          {{ data.isSelected ? '✔️' : '' }}
-        </p>
-      </template>
-    </el-calendar>
+    <meta
+      http-equiv="refresh"
+      content='0; URL="http://localhost:3000/iframe.html?globals=backgrounds.value:!hex(F8F8F8);backgrounds.grid:false&amp;args=&amp;id=examples-simple--simple"'
+    />
+  </head>
+
+  <el-calendar>
+    <template #date-cell="{ data }">
+      <p :class="data.isSelected ? 'is-selected' : ''">
+        {{ data.day.split("-").slice(1).join("-") }}
+        {{ data.isSelected ? "✔️" : "" }}
+      </p>
+    </template>
+  </el-calendar>
 </template>
-  
+
 <script setup>
-import HelloWorld from '../components/HelloWorld.vue'
-import { ref, onMounted } from 'vue'
+import HelloWorld from "../components/HelloWorld.vue";
+import { ref, onMounted } from "vue";
 
 const el = ref();
 
@@ -33,21 +35,20 @@ onMounted(() => {
 <style scoped>
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700");
 .is-selected {
-    color: #1989fa;
+  color: #1989fa;
 }
 .logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
-    transition: filter 300ms;
-  }
-  .logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
-  }
-  .logo.vue:hover {
-    filter: drop-shadow(0 0 2em #42b883aa);
-  }
-  
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.vue:hover {
+  filter: drop-shadow(0 0 2em #42b883aa);
+}
 
 *,
 *:before,
@@ -82,7 +83,7 @@ h6 {
 
 .table {
   width: 100%;
-  border: 1px solid #EEEEEE;
+  border: 1px solid #eeeeee;
 }
 
 .table-header {
@@ -99,7 +100,7 @@ h6 {
 }
 
 .table-row:nth-of-type(odd) {
-  background: #EEEEEE;
+  background: #eeeeee;
 }
 
 .table-data,
@@ -138,4 +139,4 @@ h6 {
 .filter__link.asc::after {
   content: "(asc)";
 }
-  </style>
+</style>
