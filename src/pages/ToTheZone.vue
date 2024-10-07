@@ -242,7 +242,7 @@ onMounted(() => {
   // axios.get('http://34.19.76.169:5000/v1/my-first-api/"兒童動物區"')
   // axios.get('http://localhost:5000/v1/my-first-api/' + area_title)
   axios
-    .get("https://34.168.211.105:5000/ZonedAnimal/" + area_title)
+    .get("http://34.168.211.105:5000/ZonedAnimal/" + area_title)
     .then(function (response) {
       // handle success
       console.log(response);
