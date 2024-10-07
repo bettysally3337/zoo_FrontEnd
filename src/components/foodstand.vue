@@ -23,7 +23,7 @@ onMounted(() => {
 });
 async function makeRequest() {
   try {
-    fetch("https://localhost:7248/Facility/foodstand")
+    fetch("http://34.168.211.105:5000/Facility/foodstand")
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error status!${response.status}`);
@@ -31,6 +31,7 @@ async function makeRequest() {
         return response.json();
       })
       .then((data) => {
+        console.log("前端foodstand");
         console.log(data);
         result.value = data;
 
