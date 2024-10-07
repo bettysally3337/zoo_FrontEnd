@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <!-- <h1 class="title">{{ parentMsg }}</h1> -->
+    <span v-if="el !== null"> <h1 class="title">{{ parentMsg }}</h1> </span>
     <div v-for="value in el">
       <!-- -------- START Features w/ icons and text on left & gradient title and text on right -------- -->
       <section class="py-9">
@@ -120,7 +120,7 @@ onMounted(() => {
 
 body {
   background-color: #212121;
-  font-family: Verdana, Geneva, sans-serif;
+  /* font-family: Verdana, Geneva, sans-serif; */
 }
 
 .container {

@@ -1,5 +1,5 @@
 <template>
-  <Banner :parentMsg="area_title" />
+  <Banner :parentMsg="area_title" v-if="type === 0" />
 
   <!-- <swiper
       :loop="true"
@@ -51,7 +51,7 @@
     </swiper> -->
   <!-- <HelloWorld msg="我的動物園Vue專案你好" /> -->
   <h1>{{ area_title }}</h1>
-  <div class="container-fluid">
+  <div v-if="type === 0" class="container-fluid">
     <div v-for="(value, index) in el">
       <div class="card" data-animation="true">
         <div
@@ -63,6 +63,13 @@
           <h8 class="font-weight-normal mt-3">
             <a>{{ value.a_Name_En }}</a> / <a>{{ value.a_Name_Latin }}</a>
           </h8>
+          <h6 class="font-weight-normal mt-3">
+            <a>{{ value.a_Phylum }}</a> / <a>{{ value.a_Class }}</a> /
+            <a>{{ value.a_Order }}</a> / <a>{{ value.a_Family }}</a>
+            <span v-if="value.a_AlsoKnown"
+              >/ <a>{{ value.a_AlsoKnown }}</a></span
+            >
+          </h6>
           <a class="d-block blur-shadow-image">
             <!-- <img :src=value.a_Pic01_URL :alt=value.a_Pic01_ALT class="img-fluid shadow border-radius-lg">
                 -->
@@ -72,7 +79,7 @@
               :navigation="navigation"
               :modules="modules"
               :autoplay="{
-                delay: 2000,
+                delay: 3500,
                 disableOnInteraction: false,
               }"
               class="mySwiper"
@@ -115,6 +122,7 @@
             :style="{ 'background-image': 'url(' + value.a_Pic01_URL + ')' }"
           ></div>
         </div>
+        Type: {{ type }}
         <div class="card-body text-center">
           <div class="d-flex mt-n6 mx-auto">
             <a
@@ -136,9 +144,7 @@
           </div>
           <h5 class="font-weight-normal mt-3">
             <span v-for="(v, index) in value.a_Location.split(';')">
-              <a :href="'https://34.168.211.105:8000/ToTheZone/?' + v">
-                {{ v }}</a
-              >
+              <a :href="'http://localhost:8000/ToTheZone/?' + v"> {{ v }}</a>
               <span v-if="index < value.a_Location.split(';').length - 1"
                 >,</span
               ></span
@@ -147,6 +153,15 @@
           <p class="mb-0">
             {{ value.a_Feature }}
           </p>
+          <span v-if="value.a_Crisis">
+            <i
+              class="material-icons position-relative ms-auto text-lg me-1 my-auto"
+              >危機</i
+            >
+            <p class="mb-0">
+              {{ value.a_Crisis }}
+            </p>
+          </span>
         </div>
         <hr class="dark horizontal my-0" />
         <div class="card-footer d-flex">
@@ -157,10 +172,20 @@
           >
           <p class="text-sm my-auto">{{ value.a_Distribution }}</p>
         </div>
+        <hr class="dark horizontal my-0" />
+        <div class="card-footer d-flex">
+          <p class="font-weight-normal my-auto">{{ value.a_Habitat }}</p>
+          <i
+            class="material-icons position-relative ms-auto text-lg me-1 my-auto"
+            >食物</i
+          >
+          <p class="text-sm my-auto">{{ value.a_Diet }}</p>
+        </div>
       </div>
     </div>
   </div>
 
+  <Plants :parentMsg="area_title" />
   <el-calendar>
     <template #date-cell="{ data }">
       <p :class="data.isSelected ? 'is-selected' : ''">
@@ -173,7 +198,9 @@
 
 <script setup>
 import HelloWorld from "../components/HelloWorld.vue";
-import Banner from "../components/Banner.vue"; // import Swiper JS
+import Banner from "../components/Banner.vue";
+import Plants from "../components/Plants.vue";
+// import Swiper JS
 import "../swiper/css/style.css";
 import { Swiper, SwiperSlide } from "swiper/vue"; // Import Swiper Vue.js components
 import "swiper/css"; // Import Swiper styles
@@ -189,9 +216,25 @@ const navigation = ref({
 
 import axios from "axios";
 import { ref, onMounted } from "vue";
+import { propsToAttrMap } from "@vue/shared";
+
+//LEXI暫時加入的CODE
+const props = defineProps({
+  msg: String,
+  type: {
+    type: Number,
+    default: 0,
+  },
+});
+var area_title = props.msg
+  ? props.msg
+  : decodeURI(location.search.substring(1));
 
 const el = ref();
-var area_title = decodeURI(location.search.substring(1));
+//LEXI註解+EMIT
+// var area_title = decodeURI(location.search.substring(1));
+const emit = defineEmits();
+
 // 網頁載入時會觸發的方法
 onMounted(() => {
   console.log("test-" + area_title);
@@ -199,13 +242,15 @@ onMounted(() => {
   // axios.get('http://34.19.76.169:5000/v1/my-first-api/"兒童動物區"')
   // axios.get('http://localhost:5000/v1/my-first-api/' + area_title)
   axios
-    .get("http://34.168.211.105:5000/ZonedAnimal/" + area_title)
+    .get("https://localhost:5000/ZonedAnimal/" + area_title)
     .then(function (response) {
       // handle success
       console.log(response);
       el.value = response.data;
 
       console.log("el = " + el);
+
+      emit("ToTheZonePic", el.value);
     })
     .catch(function (error) {
       // handle error
@@ -217,8 +262,9 @@ onMounted(() => {
 });
 </script>
 
-<style scoped>
-@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700");
+<style lang="scss" scoped>
+// @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700");
+@import "@/assets/styles/main.scss";
 .is-selected {
   color: #1989fa;
 }
@@ -243,7 +289,7 @@ onMounted(() => {
 
 body {
   padding: 24px;
-  font-family: "Source Sans Pro", sans-serif;
+  // font-family: "Source Sans Pro", sans-serif;
   margin: 0;
 }
 
