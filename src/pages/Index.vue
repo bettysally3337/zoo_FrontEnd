@@ -49,24 +49,6 @@
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
     </button>
-    <!-- <button
-      class="carousel-control-prev"
-      type="button"
-      data-bs-target="#carouselExampleCaptions"
-      data-bs-slide="prev"
-    >
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button
-      class="carousel-control-next"
-      type="button"
-      data-bs-target="#carouselExampleCaptions"
-      data-bs-slide="next"
-    >
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button> -->
   </div>
 
   <nav class="nav nav-pills nav-justified">
@@ -125,9 +107,21 @@ export default {
 @import "@/assets/styles/main.scss";
 
 // 設定大圖Carousel
-#carousel-inner {
-  h1 {
-    font-family: inherit;
+#carouselExampleAutoplaying {
+  height: 80vh;
+  overflow: hidden;
+  position: relative;
+
+  .carousel-inner {
+    width: 100%;
+    height: 100%;
+    .carousel-item {
+      width: 100%;
+      height: 100%;
+      h1 {
+        font-family: inherit;
+      }
+    }
   }
 }
 
