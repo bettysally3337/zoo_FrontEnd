@@ -122,7 +122,6 @@
             :style="{ 'background-image': 'url(' + value.a_Pic01_URL + ')' }"
           ></div>
         </div>
-        Type: {{ type }}
         <div class="card-body text-center">
           <div class="d-flex mt-n6 mx-auto">
             <a

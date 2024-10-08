@@ -155,12 +155,12 @@ var Zone = "";
 onMounted(() => {
   Zone = props.parentMsg;
   // });
-  console.log("https://34.168.211.105:5000/ZonedPlant/" + Zone);
+  console.log("http://34.168.211.105:5000/ZonedPlant/" + Zone);
   // Make a request for a user with a given ID
   // axios.get('http://34.19.76.169:5000/v1/my-first-api/"兒童動物區"')
   // axios.get('http://localhost:5000/v1/my-first-api/' + area_title)
   axios
-    .get("https://34.168.211.105:5000/ZonedPlant/" + Zone)
+    .get("http://34.168.211.105:5000/ZonedPlant/" + Zone)
     .then(function (response) {
       // handle success
       console.log(response);

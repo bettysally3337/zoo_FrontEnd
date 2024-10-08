@@ -3,12 +3,15 @@
     <HelloWorld msg="動物園地圖" />
     <div>動物園地圖</div>
 
-    <meta
+    <!-- <meta
       http-equiv="refresh"
       content='0; URL="http://localhost:3000/iframe.html?globals=backgrounds.value:!hex(F8F8F8);backgrounds.grid:false&amp;args=&amp;id=examples-simple--simple"'
-    />
+    /> -->
   </head>
-
+  <iframe
+    style="width: 100%; height: 90vh; overflow: hidden"
+    src="http://34.168.211.105/map/iframe.html?args=&id=examples-simple--simple&viewMode=story"
+  />
   <el-calendar>
     <template #date-cell="{ data }">
       <p :class="data.isSelected ? 'is-selected' : ''">
